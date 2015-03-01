@@ -1,4 +1,6 @@
-<definitions xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="urn:xmds" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns="http://schemas.xmlsoap.org/wsdl/" targetNamespace="urn:xmds">
+<definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="urn:xmds"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/"
+             targetNamespace="urn:xmds">
     <types>
         <xsd:schema targetNamespace="urn:xmds">
             <xsd:import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
@@ -35,6 +37,15 @@
     </message>
     <message name="GetFileResponse">
         <part name="file" type="xsd:base64Binary" />
+    </message>
+    <message name="GetDefaultLayoutRequest">
+        <part name="serverKey" type="xsd:string"/>
+        <part name="hardwareKey" type="xsd:string"/>
+        <part name="chunkOffset" type="xsd:double"/>
+        <part name="chuckSize" type="xsd:double"/>
+    </message>
+    <message name="GetDefaultLayoutResponse">
+        <part name="file" type="xsd:base64Binary"/>
     </message>
     <message name="ScheduleRequest">
         <part name="serverKey" type="xsd:string" />
@@ -119,6 +130,11 @@
             <input message="tns:GetFileRequest"/>
             <output message="tns:GetFileResponse"/>
         </operation>
+        <operation name="GetDefaultLayout">
+            <documentation>Gets the default layout requested</documentation>
+            <input message="tns:GetDefaultLayoutRequest"/>
+            <output message="tns:GetDefaultLayoutResponse"/>
+        </operation>
         <operation name="Schedule">
             <documentation>Gets the schedule</documentation>
             <input message="tns:ScheduleRequest"/>
@@ -187,6 +203,17 @@
             </input>
             <output>
                 <soap:body use="encoded" namespace="urn:xmds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </output>
+        </operation>
+        <operation name="GetDefaultLayout">
+            <soap:operation soapAction="urn:xmds#GetDefaultLayout" style="rpc"/>
+            <input>
+                <soap:body use="encoded" namespace="urn:xmds"
+                           encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </input>
+            <output>
+                <soap:body use="encoded" namespace="urn:xmds"
+                           encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
             </output>
         </operation>
         <operation name="Schedule">
