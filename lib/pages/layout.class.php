@@ -767,7 +767,7 @@ HTML;
             $row['layout_form_edit_url'] = 'index.php?p=layout&q=displayForm&layoutid=' . $layout['layoutid'];
 
             // Add some buttons for this row
-            if (Layout::$DESC_5_STAR_MEDIA_LAYOUT == $row['description']) {
+//            if (Layout::$DESC_5_STAR_MEDIA_LAYOUT == $row['description']) {
                 $row['buttons'][] = array(
                     'id' => 'layout_button_setDefault',
                     'linkType' => '_self',
@@ -775,7 +775,7 @@ HTML;
                     'text' => __('Set default')
                 );
                 $row['buttons'][] = array('linkType' => 'divider');
-            }
+//            }
 
             if ($layout['edit']) {
                 // Design Button
