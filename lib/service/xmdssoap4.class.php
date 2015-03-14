@@ -1404,10 +1404,11 @@ class XMDSSoap4
         try {
             $dbh = PDOConnect::init();
 
-            $sth = $dbh->prepare('SELECT xml FROM layout WHERE status = :status AND description = :description');
+//            $sth = $dbh->prepare('SELECT xml FROM layout WHERE status = :status AND description = :description');
+            $sth = $dbh->prepare('SELECT xml FROM layout WHERE status = :status');
             $sth->execute(array(
                 'status' => Layout::$STATUS_5_STAR_MEDIA_DEFAULT_LAYOUT,
-                'description' => Layout::$DESC_5_STAR_MEDIA_LAYOUT
+//                'description' => Layout::$DESC_5_STAR_MEDIA_LAYOUT
             ));
 
             if (!$row = $sth->fetch())
